@@ -14,12 +14,9 @@ app.get('/', (req, res) => {
 
 app.get('/characters', async (req, res) => {
   try {
-    // requête vers l'API Marvel
-    // => axios
     const response = await axios.get(
       `${apiUrl}/characters?apiKey=${process.env.API_KEY}`,
     )
-    // console.log(response.data);
     res.status(200).json(response.data)
   } catch (error) {
     res.status(400).json({ message: error.message })
