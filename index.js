@@ -28,6 +28,22 @@ app.get('/comics', async (req, res) => {
     const response = await axios.get(
       `${apiUrl}/comics?apiKey=${process.env.API_KEY}`,
     )
+    //console.log(response.data)
+    res.status(200).json(response.data)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
+app.get('/comics/:characterId', async (req, res) => {
+  const characterId = req.params.characterId
+
+  try {
+    const response = await axios.get(
+      `${apiUrl}/comics/:characterId?apiKey=${process.env.API_KEY}`,
+    )
+    //console.log(response.data)
+
     res.status(200).json(response.data)
   } catch (error) {
     res.status(400).json({ message: error.message })
