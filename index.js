@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get('/characters', async (req, res) => {
   try {
     const response = await axios.get(
-      `${apiUrl}/characters?apiKey=${process.env.API_KEY}`,
+      `${apiUrl}/characters?skip=${req.query.skip}&name=${req.query.name}&apiKey=${process.env.API_KEY}`,
     )
     res.status(200).json(response.data)
   } catch (error) {
@@ -26,7 +26,7 @@ app.get('/characters', async (req, res) => {
 app.get('/comics', async (req, res) => {
   try {
     const response = await axios.get(
-      `${apiUrl}/comics?apiKey=${process.env.API_KEY}`,
+      `${apiUrl}/comics?skip=${req.query.skip}&title=${req.query.title}&apiKey=${process.env.API_KEY}`,
     )
     //console.log(response.data)
     res.status(200).json(response.data)
@@ -37,10 +37,11 @@ app.get('/comics', async (req, res) => {
 
 app.get('/comics/:characterId', async (req, res) => {
   const characterId = req.params.characterId
+  console.log(req.params.characterId)
 
   try {
     const response = await axios.get(
-      `${apiUrl}/comics/:characterId?apiKey=${process.env.API_KEY}`,
+      `${apiUrl}/comics/${characterId}?apiKey=${process.env.API_KEY}`,
     )
     //console.log(response.data)
 
