@@ -26,7 +26,7 @@ app.get('/characters', async (req, res) => {
 app.get('/comics', async (req, res) => {
   try {
     const response = await axios.get(
-      `${apiUrl}/comics?skip=${req.query.skip}&title=${req.query.title}&apiKey=${process.env.API_KEY}`,
+      `${apiUrl}/comics?skip=${req.query.skip}&title=${req.query.title}&data=${req.query.data}&apiKey=${process.env.API_KEY}`,
     )
     //console.log(response.data)
     res.status(200).json(response.data)
